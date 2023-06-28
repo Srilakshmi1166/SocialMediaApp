@@ -1,5 +1,6 @@
 
 const MONGOOSE = require("mongoose");
+const bcrypt = require ('bcrypt.js');
 
 const SCHEMA = new MONGOOSE.Schema({
   USERID: {type: String, unique: true, required: true},
@@ -16,9 +17,11 @@ async function REGISTER(userid, password, firstname, lastname, email, dateofbirt
 {
   const user = await GETUSER(userid);
   if(user) throw Error('Username is not available');
+  const salt= await bcrypt.genSalt(10);
+  const hashed =await bcrypt.hash(password,salt);
   const NEWUSER = await USER.create({
     USERID: userid,
-    PASSWORD: password,
+    PASSWORD: hashed,
     FIRSTNAME: firstname,
     LASTNAME: lastname,
     EMAIL: email,
@@ -31,7 +34,8 @@ async function LOGIN(userid, password)
 {
   const user = await GETUSER(userid);
   if(!user) throw Error('There is no user with this userid');
-  if(user.PASSWORD != password)
+  const isMatch=await bcrypt.compare(password,user.password);
+  if(!isMatch)
   { 
     throw Error('Incorrect Password is provided');
   }
