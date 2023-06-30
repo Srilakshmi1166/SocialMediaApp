@@ -1,42 +1,42 @@
 import React, { useState } from 'react';
 
-function LoginForm() {
-  const [formData, setFormData] = useState({
-    userid: '',
-    password: '',
-  });
+const LoginForm = () => { 
+    {
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  const [USERID, setUserId] = useState('');
+  const [PASSWORD, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('User ID:', USERID);
+    console.log('Password:', PASSWORD);
   };
 
-
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="userid">UserId:</label>
+        <label htmlFor="USERID">User ID:</label>
         <input
           type="text"
-          id="userid"
-          name="userid"
-          value={formData.userid}
-          onChange={handleChange}
+          id="USERID"
+          value={USERID}
+          onChange={(e) => setUserId(e.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="PASSWORD">Password:</label>
         <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
+          type="PASSWORD"
+          id="PASSWORD"
+          value={PASSWORD}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Login</button>
+      <input type="submit" className="btn btn-primary" value="Login"/>
     </form>
   );
-}
+};
+};
 
 export default LoginForm;

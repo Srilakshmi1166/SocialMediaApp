@@ -1,12 +1,13 @@
 
 const MONGOOSE = require("mongoose");
-const bcrypt = require ('bcrypt.js');
+const bcrypt = require ('bcryptjs');
 
 const SCHEMA = new MONGOOSE.Schema({
   USERID: {type: String, unique: true, required: true},
   PASSWORD: {type: String, required: true},
   FIRSTNAME: {type: String, required: true},
   LASTNAME: {type: String, required: true},
+  
   EMAIL: {type: String, required: true},
   DATEOFBIRTH:{type: Date, required: true}
 })
@@ -34,7 +35,7 @@ async function LOGIN(userid, password)
 {
   const user = await GETUSER(userid);
   if(!user) throw Error('There is no user with this userid');
-  const isMatch=await bcrypt.compare(password,user.password);
+  const isMatch=await bcrypt.compare(password,user.PASSWORD);
   if(!isMatch)
   { 
     throw Error('Incorrect Password is provided');

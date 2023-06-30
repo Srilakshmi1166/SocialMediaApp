@@ -1,21 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Outlet, Link } from "react-router-dom";
 
-function Navbar() {
+const Navbar = () => {
+ 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-      </ul>
-    </nav>
+    <div>
+      <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Social Media Application</Link>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/Home">Home</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <Outlet />
+    </div>
   );
 }
 
