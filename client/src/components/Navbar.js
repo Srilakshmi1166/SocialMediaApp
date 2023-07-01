@@ -1,7 +1,10 @@
 import { Outlet, Link } from "react-router-dom";
+import Register from "./RegisterForm.js";
+import Login from "./LoginForm.js";
+import Profile from './Profile.js';
+import Home from './Home.js';
 
 const Navbar = () => {
- 
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-light">
@@ -13,7 +16,16 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/Home">Home</Link>
+                <Link to="/Register">Register</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/Home">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/Login">Login</Link>
+              </li>
+              <li className="nav-item">
+                <Link  to="/Profile">Profile</Link>
               </li>
             </ul>
           </div>
