@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import { fetchData } from "../../main.js";
+import { useNavigate } from 'react-router-dom';
+import {UserContext} from "./UserContext.js";
+import {useContext}  from "react";
+
 
 const LoginForm = () => { 
     {
+
+  const navigate = useNavigate();
+  const { updateUser} = useContext(UserContext);
 
   const [USERID, setUserId] = useState('');
   const [PASSWORD, setPassword] = useState('');
@@ -9,8 +17,17 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('User ID:', USERID);
-    console.log('Password:', PASSWORD);
+    fetchData("/user/LOGIN",{USERID,PASSWORD}, "POST")
+    .then((data)=> {
+      if(!data.message) {
+        updateUser("authenticated", true)
+        navigate('/Profile')
+      }
+    })  
+    .catch((error) => 
+    {
+      console.log(error)
+    })
   };
 
   return (

@@ -7,7 +7,6 @@ const SCHEMA = new MONGOOSE.Schema({
   PASSWORD: {type: String, required: true},
   FIRSTNAME: {type: String, required: true},
   LASTNAME: {type: String, required: true},
-  
   EMAIL: {type: String, required: true},
   DATEOFBIRTH:{type: Date, required: true}
 })

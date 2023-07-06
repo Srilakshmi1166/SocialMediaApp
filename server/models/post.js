@@ -37,7 +37,6 @@ async function UPDATE( id, creatorid, postcontent)
 
 async function READ(id, creatorid) 
 {
-   //  creatorid will be used further
   const post = await FINDPOST(id);
   if(!post) throw Error("NO POST FOUND");
   return post;

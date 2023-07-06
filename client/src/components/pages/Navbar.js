@@ -1,8 +1,4 @@
 import { Outlet, Link } from "react-router-dom";
-import Register from "./RegisterForm.js";
-import Login from "./LoginForm.js";
-import Profile from './Profile.js';
-import Home from './Home.js';
 
 const Navbar = () => {
   return (
@@ -17,9 +13,6 @@ const Navbar = () => {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link to="/Register">Register</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/Home">Home</Link>
               </li>
               <li className="nav-item">
                 <Link to="/Login">Login</Link>
